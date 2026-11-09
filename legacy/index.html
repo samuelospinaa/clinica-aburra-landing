@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clínica Aburrá · Medellín</title>
+<meta name="description" content="Clínica Aburrá en El Poblado, Medellín: medicina general, especialistas, laboratorio y telemedicina. Agenda tu cita por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#0891b2; --primary-hover:#0e7490; --primary-soft:#ecfeff; --primary-200:#a5f3fc; --primary-400:#22d3ee; --primary-900:#164e63;
+  --chart:#1797b6; --bg:#f9fafb; --surface:#fff; --text:#111827; --muted:#6b7280; --border:#e5e7eb;
+  --success:#22c55e; --danger:#ef4444; --valle:#0a2f3b;
+  --display:"Bricolage Grotesque",system-ui,sans-serif; --body:Figtree,system-ui,sans-serif;
+  --r:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--surface);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+:focus-visible{outline:3px solid var(--primary-400);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+h1,h2,h3{font-family:var(--display);font-weight:500;letter-spacing:-.035em;line-height:1;text-wrap:balance}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:15px 28px;border-radius:999px;font-weight:600;font-size:15px;border:1px solid transparent;cursor:pointer;transition:background .2s,transform .2s;font-family:var(--body)}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--primary);color:#fff}.btn-primary:hover{background:var(--primary-hover)}
+.btn-white{background:#fff;color:var(--text)}.btn-white:hover{background:var(--primary-soft)}
+.btn-ghost{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.4);backdrop-filter:blur(8px)}
+.btn-ghost:hover{background:rgba(255,255,255,.24)}
+.tag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--primary-hover)}
+.mono{font-variant-numeric:tabular-nums;letter-spacing:.04em}
+
+/* NAV */
+nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:50;width:min(940px,calc(100% - 28px));display:flex;align-items:center;justify-content:space-between;padding:9px 10px 9px 26px;border-radius:999px;background:rgba(255,255,255,.14);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.32);color:#fff;transition:background .3s,color .3s,border-color .3s}
+nav.solid{background:rgba(255,255,255,.94);color:var(--text);border-color:var(--border)}
+.logo{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.03em}
+nav ul{display:flex;gap:30px;list-style:none;font-size:14px;font-weight:500}
+nav ul a{opacity:.85}nav ul a:hover{opacity:1}
+nav .btn{padding:11px 22px;font-size:14px}
+nav.solid .btn{background:var(--primary);color:#fff}
+
+/* HERO */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;overflow:hidden;background:var(--primary-900)}
+.hero .photo{position:absolute;inset:0;background:url("https://images.unsplash.com/photo-1715503234327-b57d32e5da0f?auto=format&fit=crop&w=2200&q=75") center/cover;animation:drift 24s ease-out both}
+@keyframes drift{from{transform:scale(1.12)}to{transform:scale(1)}}
+.hero .tint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,80,100,.55) 0%,rgba(8,145,178,.35) 38%,rgba(10,47,59,.92) 100%);mix-blend-mode:multiply}
+.hero .tint2{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,47,59,.35),rgba(10,47,59,.55) 55%,rgba(10,47,59,.85))}
+svg.topo{position:absolute;right:-8%;top:6%;width:80vmax;height:80vmax;max-width:1100px;max-height:1100px;opacity:.55;pointer-events:none}
+svg.topo path{fill:none;stroke:#a5f3fc;stroke-width:1;stroke-dasharray:2400;stroke-dashoffset:2400;animation:draw 3.2s .2s ease-out forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.hero .inner{position:relative;padding:120px 0 0}
+.status{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.32);padding:7px 16px 7px 12px;border-radius:999px;font-size:13px;font-weight:500;backdrop-filter:blur(10px);margin-bottom:28px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--success);box-shadow:0 0 0 4px rgba(34,197,94,.3);animation:pulse 2s infinite}
+.dot.off{background:#fca5a5;box-shadow:0 0 0 4px rgba(239,68,68,.25);animation:none}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(34,197,94,0)}}
+.hero h1{font-size:clamp(44px,6.8vw,96px);max-width:12ch;margin-bottom:24px;text-shadow:0 2px 30px rgba(6,33,42,.45)}
+.hero .lead{text-shadow:0 1px 14px rgba(6,33,42,.5)}
+.hero h1 em{font-style:normal;color:var(--primary-200)}
+.hero .lead{font-size:clamp(17px,1.8vw,20px);max-width:500px;opacity:.92;margin-bottom:34px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.coords{position:absolute;right:28px;top:128px;text-align:right;font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.85;line-height:1.9}
+.giant{font-family:var(--display);font-weight:700;font-size:clamp(80px,23.5vw,350px);letter-spacing:-.065em;line-height:.74;text-align:center;margin-top:28px;margin-bottom:-.075em;white-space:nowrap;user-select:none;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.9);overflow:hidden}
+.giant span{color:rgba(255,255,255,.95);-webkit-text-stroke:0}
+
+/* SECTIONS */
+section{padding:128px 0}
+.lede{display:grid;grid-template-columns:1.25fr 1fr;gap:72px;align-items:end}
+.lede h2{font-size:clamp(36px,5.6vw,76px);margin-top:16px}
+.lede p{font-size:19px;color:var(--muted)}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);margin-top:72px;border-top:1px solid var(--border)}
+.facts div{padding:28px 24px 0 0}
+.facts b{display:block;font-family:var(--display);font-weight:500;font-size:clamp(36px,4vw,56px);letter-spacing:-.04em;line-height:1;color:var(--primary-900)}
+.facts span{display:block;margin-top:10px;font-size:14px;color:var(--muted)}
+
+/* SERVICES bento */
+.services{background:var(--bg)}
+.head{display:flex;justify-content:space-between;align-items:end;gap:32px;margin-bottom:56px;flex-wrap:wrap}
+.head h2{font-size:clamp(36px,5.2vw,68px);max-width:13ch;margin-top:14px}
+.head p{max-width:380px;color:var(--muted)}
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.tile{position:relative;border-radius:var(--r);overflow:hidden;background:var(--surface);border:1px solid var(--border);padding:30px;display:flex;flex-direction:column;justify-content:flex-end;min-height:260px;transition:transform .35s,box-shadow .35s}
+.tile:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(8,145,178,.14)}
+.tile h3{font-size:26px;letter-spacing:-.025em;line-height:1.1;margin-bottom:8px}
+.tile p{font-size:15px;color:var(--muted);max-width:34ch}
+.tile .ico{width:46px;height:46px;border-radius:14px;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;margin-bottom:auto}
+.tile svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.tile.img{color:#fff;border:0}
+.tile.img p{color:rgba(255,255,255,.85)}
+.tile.img .bgimg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .8s}
+.tile.img:hover .bgimg{transform:scale(1.05)}
+.tile.img:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,47,59,.08) 0%,rgba(10,47,59,.35) 40%,rgba(10,47,59,.94) 100%)}
+.tile.img>h3,.tile.img>p{position:relative;z-index:1;text-shadow:0 1px 12px rgba(0,0,0,.35)}
+.tile.img>p{color:#fff;opacity:.92}
+.t-a{grid-column:span 7;min-height:420px}.t-b{grid-column:span 5}.t-c{grid-column:span 4}.t-d{grid-column:span 4}.t-e{grid-column:span 4}
+.t-f{grid-column:span 5;min-height:300px}.t-g{grid-column:span 7;min-height:300px}
+.chip{position:absolute;top:22px;left:22px;z-index:2;font-size:12px;font-weight:600;background:rgba(255,255,255,.92);color:var(--primary-900);padding:6px 12px;border-radius:999px}
+
+/* TECH */
+.tech{background:var(--valle);color:#fff;position:relative;overflow:hidden}
+.tech .split{display:grid;grid-template-columns:1fr 1.05fr;gap:80px;align-items:center}
+.tech .tag{color:var(--primary-400)}
+.tech h2{font-size:clamp(38px,5.4vw,74px);margin:16px 0 24px}
+.tech p.sub{color:#9fc5cf;font-size:18px;max-width:470px;margin-bottom:30px}
+.checks{list-style:none;display:grid;gap:14px;margin-bottom:38px}
+.checks li{display:flex;gap:14px;align-items:flex-start;color:#dff4f8}
+.checks li:before{content:"";margin-top:2px;width:22px;height:22px;border-radius:50%;flex:none;background:var(--success) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12l4 4 8-8'/%3E%3C/svg%3E") center/13px no-repeat}
+.panel{background:var(--bg);color:var(--text);border-radius:26px;padding:22px;box-shadow:0 50px 90px rgba(0,0,0,.45);transform:rotate(1.2deg)}
+.panel .bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;font-family:var(--display);font-size:18px;letter-spacing:-.02em}
+.pill{font-family:var(--body);font-size:12px;font-weight:600;padding:4px 11px;border-radius:999px;letter-spacing:0}
+.ok{background:#dcfce7;color:#16a34a}.bad{background:#fee2e2;color:#dc2626}.soft{background:var(--primary-soft);color:var(--primary-900)}
+.box{background:#fff;border:1px solid var(--border);border-radius:16px;padding:16px 18px;margin-bottom:12px}
+.box small{color:var(--muted);font-size:13px}
+.bars{display:flex;align-items:flex-end;gap:9px;height:120px;margin-top:12px}
+.bars i{flex:1;background:var(--chart);border-radius:7px 7px 0 0;transform-origin:bottom;transform:scaleY(0);transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.in .bars i{transform:scaleY(1)}
+.bars i:nth-child(2){transition-delay:.07s}.bars i:nth-child(3){transition-delay:.14s}.bars i:nth-child(4){transition-delay:.21s}.bars i:nth-child(5){transition-delay:.28s}.bars i:nth-child(6){transition-delay:.35s}.bars i:nth-child(7){transition-delay:.42s}
+.mths{display:flex;gap:9px;margin-top:6px;font-size:11px;color:var(--muted)}.mths span{flex:1;text-align:center}
+.row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--border);font-size:14px}
+.row:last-child{border:0;padding-bottom:0}.row:first-child{padding-top:0}
+.row b{font-weight:600;flex:1}.row span{color:var(--muted);font-size:13px}
+
+/* TEAM */
+.team{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.doc .ph{position:relative;aspect-ratio:3/4;border-radius:var(--r);overflow:hidden;background:var(--primary-soft);margin-bottom:16px}
+.doc .ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.doc:hover .ph img{transform:scale(1.05)}
+.doc h3{font-size:21px;letter-spacing:-.02em;line-height:1.15}
+.doc p{font-size:14px;color:var(--muted);margin-top:4px}
+.doc:nth-child(even){margin-top:44px}
+
+/* QUOTES */
+.quotes{background:var(--primary-soft)}
+.qgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.quote{background:#fff;border:1px solid var(--primary-200);border-radius:var(--r);padding:32px;display:flex;flex-direction:column;justify-content:space-between;gap:36px}
+.quote p{font-family:var(--display);font-size:22px;letter-spacing:-.02em;line-height:1.25}
+.quote div{display:flex;align-items:center;gap:12px;font-size:14px}
+.av{width:42px;height:42px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-weight:600}
+.quote b{display:block;font-weight:600}.quote span{color:var(--muted)}
+.stars{color:#f59e0b;letter-spacing:3px;margin-bottom:-14px}
+
+/* CONTACT */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form,.info{border:1px solid var(--border);border-radius:var(--r);padding:38px}
+.form label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.form input,.form select,.form textarea{width:100%;padding:14px 15px;border:1px solid #d1d5db;border-radius:12px;font:inherit;margin-bottom:16px;background:#fff;color:var(--text)}
+.form input:focus,.form select:focus,.form textarea:focus{outline:2px solid var(--primary-200);border-color:var(--primary)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.info{background:var(--bg)}
+.info h3{font-size:30px;margin-bottom:24px}
+.info dl{display:grid;gap:18px;margin-bottom:22px}
+.info dt{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.info dd{font-size:16px;margin-top:2px}
+.map{height:210px;border-radius:16px;overflow:hidden;border:1px solid var(--border)}
+.map{background:var(--primary-soft)}
+.map iframe{width:100%;height:100%;border:0}
+.maplink{display:inline-block;margin-top:14px;font-weight:600;font-size:14px;color:var(--primary-hover)}
+.maplink:hover{text-decoration:underline}
+
+footer{background:#06212a;color:#8fb5c0;padding:80px 0 32px;font-size:14px}
+footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:56px}
+footer h4{color:#fff;font-weight:600;margin-bottom:14px;font-size:14px}
+footer li{list-style:none;margin-bottom:9px}footer a:hover{color:#fff}
+footer .brand{font-family:var(--display);color:#fff;font-size:30px;letter-spacing:-.04em;font-weight:700;margin-bottom:12px}
+.copy{border-top:1px solid #12404d;padding:24px 84px 0 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.wa{position:fixed;right:20px;bottom:20px;z-index:60;background:var(--success);width:58px;height:58px;border-radius:50%;display:grid;place-items:center;box-shadow:0 10px 26px rgba(34,197,94,.5);transition:transform .2s}
+.wa:hover{transform:scale(1.08)}
+.wa svg{width:29px;height:29px;fill:#fff}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:960px){
+  nav ul{display:none}
+  section{padding:88px 0}
+  .coords{display:none}
+  .lede,.tech .split,.contact{grid-template-columns:1fr;gap:40px}
+  .facts{grid-template-columns:repeat(2,1fr)}
+  .bento>*{grid-column:span 12!important}
+  .team{grid-template-columns:1fr 1fr}.doc:nth-child(even){margin-top:0}
+  .qgrid{grid-template-columns:1fr}
+  footer .cols{grid-template-columns:1fr 1fr}
+  .panel{transform:none}
+}
+@media(max-width:560px){
+  .wrap{padding:0 18px}
+  .two{grid-template-columns:1fr}
+  .form,.info{padding:26px}
+  .team{gap:12px}
+  .hero .inner{padding-top:120px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  .bars i{transform:none}
+  svg.topo path{stroke-dashoffset:0}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav" aria-label="Principal">
+  <a href="#top" class="logo">Aburrá</a>
+  <ul>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#tecnologia">Tecnología</a></li>
+    <li><a href="#equipo">Equipo</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="#contacto" class="btn btn-white">Agendar cita</a>
+</nav>
+
+<header class="hero" id="top">
+  <div class="photo" role="img" aria-label="Vista de Medellín con las montañas del Valle de Aburrá"></div>
+  <div class="tint"></div><div class="tint2"></div>
+  <svg class="topo" id="topo" viewBox="-500 -500 1000 1000" aria-hidden="true"></svg>
+  <div class="coords mono" aria-hidden="true">6°12′N 75°34′O<br>1.495 m · Valle de Aburrá</div>
+  <div class="wrap inner">
+    <div class="status"><span class="dot" id="dot"></span><span id="status">Consultando horario…</span></div>
+    <h1>La salud de Medellín, <em>cerca de ti.</em></h1>
+    <p class="lead">Medicina general, especialistas, laboratorio y telemedicina en El Poblado. Agenda hoy y te confirmamos por WhatsApp en minutos.</p>
+    <div class="cta">
+      <a href="#contacto" class="btn btn-white">Agendar cita</a>
+      <a href="#servicios" class="btn btn-ghost">Ver servicios →</a>
+    </div>
+    <div class="giant" aria-hidden="true"><span>ABU</span>RRÁ</div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="lede">
+      <div class="reveal"><span class="tag">Sobre la clínica</span><h2>Una clínica de barrio, con la tecnología de una grande.</h2></div>
+      <p class="reveal">Desde 2009 atendemos familias de El Poblado, Laureles y Envigado. Cada paciente tiene un médico de cabecera, una historia clínica digital y un equipo que contesta el teléfono.</p>
+    </div>
+    <div class="facts reveal">
+      <div><b>15 años</b><span>cuidando familias del Valle de Aburrá</span></div>
+      <div><b>22 mil</b><span>pacientes con historia clínica activa</span></div>
+      <div><b>24</b><span>especialistas en 12 áreas</span></div>
+      <div><b>&lt; 48 h</b><span>para conseguir cita con un especialista</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="servicios">
+  <div class="wrap">
+    <div class="head reveal">
+      <div><span class="tag">Servicios</span><h2>Todo en un solo lugar.</h2></div>
+      <p>Del chequeo anual al examen de laboratorio, sin recorrer la ciudad de consultorio en consultorio.</p>
+    </div>
+    <div class="bento">
+      <article class="tile img t-a reveal">
+        <div class="bgimg" style="background-image:url('https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?auto=format&fit=crop&w=1400&q=75')"></div>
+        <span class="chip">Más solicitado</span>
+        <h3>Medicina general</h3><p>Chequeos, control de presión y diabetes, certificados y orientación para toda la familia.</p>
+      </article>
+      <article class="tile t-b reveal">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9-9a5 5 0 019-3 5 5 0 019 3c-2 4.5-9 9-9 9z"/></svg></div>
+        <h3>Cardiología</h3><p>Electrocardiograma y prueba de esfuerzo en la misma consulta.</p>
+      </article>
+      <article class="tile t-c reveal">
+        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div>
+        <h3>Pediatría</h3><p>Control de crecimiento, vacunación y urgencias del niño.</p>
+      </article>
+      <article class="tile t-d reveal">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3c3 4 5 6.500 5 10a5 5 0 01-10 0c0-3.500 2-6 5-10z"/></svg></div>
+        <h3>Dermatología</h3><p>Diagnóstico de piel y procedimientos menores sin hospitalización.</p>
+      </article>
+      <article class="tile t-e reveal">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M5 12a7 7 0 0114 0M12 5v2M3 20l4-6M21 20l-4-6M9 20h6"/></svg></div>
+        <h3>Ortopedia</h3><p>Rodilla, columna y lesiones deportivas con rehabilitación incluida.</p>
+      </article>
+      <article class="tile img t-f reveal">
+        <div class="bgimg" style="background-image:url('https://images.unsplash.com/photo-1606206591513-adbfbdd7a177?auto=format&fit=crop&w=1200&q=75')"></div>
+        <h3>Laboratorio clínico</h3><p>Toma de muestra sin cita de 6:30 a 10:00 a. m. Resultados en tu correo el mismo día.</p>
+      </article>
+      <article class="tile img t-g reveal">
+        <div class="bgimg" style="background-image:url('https://images.unsplash.com/photo-1666886573531-48d2e3c2b684?auto=format&fit=crop&w=1400&q=75')"></div>
+        <h3>Telemedicina</h3><p>Consulta por video desde casa, con fórmula médica y seguimiento por WhatsApp.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="tech" id="tecnologia">
+  <div class="wrap split">
+    <div class="reveal">
+      <span class="tag">Tecnología</span>
+      <h2>Tu historia clínica, siempre a la mano.</h2>
+      <p class="sub">Agenda, historia clínica y recordatorios viven en una sola plataforma. Menos filas, menos papeles y ningún resultado perdido.</p>
+      <ul class="checks">
+        <li>Recordatorio de cita por WhatsApp el día anterior</li>
+        <li>Historia clínica digital con acceso solo para ti y tu médico</li>
+        <li>Resultados de laboratorio en línea, sin ir a recogerlos</li>
+        <li>Reprogramación en dos toques si no puedes asistir</li>
+      </ul>
+      <a href="#contacto" class="btn btn-primary">Agendar cita</a>
+    </div>
+    <div class="panel reveal" aria-label="Vista del panel de citas de la clínica">
+      <div class="bar"><span>Agenda de hoy</span><span class="pill soft">Consultorio 3</span></div>
+      <div class="box"><small>Pacientes atendidos por mes</small>
+        <div class="bars"><i style="height:38%"></i><i style="height:52%"></i><i style="height:46%"></i><i style="height:66%"></i><i style="height:60%"></i><i style="height:82%"></i><i style="height:96%"></i></div>
+        <div class="mths"><span>Abr</span><span>May</span><span>Jun</span><span>Jul</span><span>Ago</span><span>Sep</span><span>Oct</span></div>
+      </div>
+      <div class="box">
+        <div class="row"><b>Ana María Restrepo</b><span>8:00 a. m.</span><span class="pill ok">Confirmada</span></div>
+        <div class="row"><b>Carlos Builes</b><span>9:30 a. m.</span><span class="pill ok">Atendida</span></div>
+        <div class="row"><b>Laura Posada</b><span>11:00 a. m.</span><span class="pill bad">Cancelada</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="equipo">
+  <div class="wrap">
+    <div class="head reveal"><div><span class="tag">Equipo</span><h2>Médicos que te conocen por tu nombre.</h2></div><p>Cada paciente tiene un médico de cabecera asignado. Siempre vuelves con la misma persona.</p></div>
+    <div class="team">
+      <div class="doc reveal"><div class="ph"><img loading="lazy" alt="Dra. Valentina Ospina" src="https://images.unsplash.com/photo-1623854767648-e7bb8009f0db?auto=format&fit=crop&w=700&q=75"></div><h3>Dra. Valentina Ospina</h3><p>Medicina general · U. de Antioquia</p></div>
+      <div class="doc reveal"><div class="ph"><img loading="lazy" alt="Dr. Andrés Londoño" src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=700&q=75"></div><h3>Dr. Andrés Londoño</h3><p>Cardiología · CES</p></div>
+      <div class="doc reveal"><div class="ph"><img loading="lazy" alt="Dra. Camila Arango" src="https://images.unsplash.com/photo-1659353888906-adb3e0041693?auto=format&fit=crop&w=700&h=933&q=75"></div><h3>Dra. Camila Arango</h3><p>Pediatría · U. Pontificia Bolivariana</p></div>
+      <div class="doc reveal"><div class="ph"><img loading="lazy" alt="Dr. Mauricio Zapata" src="https://images.unsplash.com/photo-1758691461516-7e716e0ca135?auto=format&fit=crop&w=700&h=933&q=75"></div><h3>Dr. Mauricio Zapata</h3><p>Ortopedia · U. de Antioquia</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="quotes">
+  <div class="wrap">
+    <div class="head reveal"><div><span class="tag">Pacientes</span><h2>Lo que cuentan de nosotros.</h2></div></div>
+    <div class="qgrid">
+      <div class="quote reveal"><div class="stars" style="display:block">★★★★★</div><p>“Llegué con la presión alta y salí con un plan claro. La doctora me escribió a la semana para ver cómo iba.”</p><div><span class="av">MG</span><span><b>María Gómez</b>Laureles</span></div></div>
+      <div class="quote reveal"><div class="stars" style="display:block">★★★★★</div><p>“Agendé por WhatsApp un martes y el jueves ya estaba con el cardiólogo. Sin filas ni papeleo.”</p><div><span class="av">JD</span><span><b>Juan David Mejía</b>El Poblado</span></div></div>
+      <div class="quote reveal"><div class="stars" style="display:block">★★★★★</div><p>“Los resultados del laboratorio me llegaron al correo antes del almuerzo. Mi mamá también lo usa.”</p><div><span class="av">SL</span><span><b>Sofía Lopera</b>Envigado</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="wrap">
+    <div class="head reveal"><div><span class="tag">Contacto</span><h2>Agenda tu cita hoy.</h2></div><p>Déjanos tus datos y te escribimos por WhatsApp para confirmar fecha y hora.</p></div>
+    <div class="contact">
+      <form class="form reveal" id="f">
+        <div class="two">
+          <div><label for="n">Nombre</label><input id="n" required autocomplete="name" placeholder="Ej. Laura Restrepo"></div>
+          <div><label for="t">Celular</label><input id="t" type="tel" required autocomplete="tel" placeholder="Ej. 310 555 0142"></div>
+        </div>
+        <label for="s">Servicio</label>
+        <select id="s"><option>Medicina general</option><option>Cardiología</option><option>Pediatría</option><option>Dermatología</option><option>Ortopedia</option><option>Laboratorio clínico</option><option>Telemedicina</option></select>
+        <label for="m">¿Algo que debamos saber?</label>
+        <textarea id="m" rows="3" placeholder="Ej. Prefiero cita en la mañana"></textarea>
+        <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Pedir cita por WhatsApp</button>
+      </form>
+      <div class="info reveal">
+        <h3>Visítanos en El Poblado</h3>
+        <dl>
+          <div><dt>Dirección</dt><dd>Carrera 43A # 7-50, Medellín</dd></div>
+          <div><dt>Horario</dt><dd>Lunes a viernes 7:00 a. m. – 6:00 p. m.<br>Sábados 8:00 a. m. – 1:00 p. m.</dd></div>
+          <div><dt>Teléfono y WhatsApp</dt><dd>(604) 555 0120 · 310 555 0142</dd></div>
+        </dl>
+        <div class="map"><iframe title="Mapa de la clínica en El Poblado, Medellín" loading="lazy" src="https://maps.google.com/maps?q=6.2085,-75.5700&amp;z=15&amp;output=embed"></iframe></div>
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=6.2085,-75.5700" target="_blank" rel="noopener">Abrir en Google Maps →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div><div class="brand">Aburrá</div><p>Clínica Aburrá S.A.S.<br>Carrera 43A # 7-50, El Poblado, Medellín</p></div>
+      <div><h4>Clínica</h4><ul><li><a href="#servicios">Servicios</a></li><li><a href="#tecnologia">Tecnología</a></li><li><a href="#equipo">Equipo</a></li></ul></div>
+      <div><h4>Contacto</h4><ul><li><a href="#contacto">Agendar cita</a></li><li>(604) 555 0120</li><li>citas@clinicaaburra.co</li></ul></div>
+      <div><h4>Síguenos</h4><ul><li><a href="#">Instagram</a></li><li><a href="#">Facebook</a></li><li><a href="https://wa.me/573105550142">WhatsApp</a></li></ul></div>
+    </div>
+    <div class="copy"><span>© 2026 Clínica Aburrá. Todos los derechos reservados.</span><span>Sitio de ejemplo · Fotos: Unsplash</span></div>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/573105550142" aria-label="Escribir por WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.600 15.100L2 22l5-1.300A10 10 0 1012 2zm5.200 14.100c-.2.600-1.300 1.200-1.800 1.200-.5.100-1 .2-3.300-.7-2.800-1.100-4.600-4-4.700-4.200-.1-.2-1.100-1.500-1.100-2.800s.7-2 1-2.300c.2-.3.500-.3.700-.3h.5c.2 0 .4 0 .6.500l.9 2.100c.1.200.1.400 0 .6l-.4.600c-.2.200-.3.400-.1.700.2.300.8 1.300 1.700 2.100 1.100 1 2.100 1.300 2.400 1.500.3.100.5.100.7-.1l.9-1.100c.2-.3.400-.2.700-.1l2 .9c.3.100.5.200.6.300.1.300.1.800-.1 1.400z"/></svg></a>
+
+<script>
+/* Contour lines: concentric rings of a valley */
+(function(){
+  var svg=document.getElementById('topo'),d='';
+  for(var k=0;k<22;k++){
+    var base=40+k*21,pts=[];
+    for(var i=0;i<=120;i++){
+      var a=i/120*Math.PI*2;
+      var r=base*(1+.13*Math.sin(3*a+k*.12)+.07*Math.sin(5*a+1.7+k*.07)+.04*Math.sin(8*a+k*.2));
+      pts.push((Math.cos(a)*r*1.1).toFixed(1)+','+(Math.sin(a)*r*.85).toFixed(1));
+    }
+    var p=document.createElementNS('http://www.w3.org/2000/svg','path');
+    p.setAttribute('d','M'+pts.join('L')+'Z');
+    p.style.animationDelay=(.2+k*.07)+'s';
+    p.style.opacity=(1-k*.03).toFixed(2);
+    svg.appendChild(p);
+  }
+})();
+
+/* Open-now status in Medellín time (America/Bogota) */
+(function(){
+  var f=new Intl.DateTimeFormat('es-CO',{timeZone:'America/Bogota',weekday:'short',hour:'numeric',minute:'numeric',hour12:false});
+  var parts=f.formatToParts(new Date()),g=function(t){return parts.find(function(p){return p.type===t}).value};
+  var wd=g('weekday').toLowerCase().replace('.',''),h=+g('hour')+(+g('minute')/60);
+  var sat=wd.indexOf('sáb')===0||wd.indexOf('sab')===0,sun=wd.indexOf('dom')===0;
+  var open=sun?false:sat?(h>=8&&h<13):(h>=7&&h<18);
+  document.getElementById('dot').classList.toggle('off',!open);
+  document.getElementById('status').textContent=open?'Abierto ahora en El Poblado, Medellín':(sun?'Cerrado hoy · Abrimos el lunes a las 7:00 a. m.':'Cerrado ahora · Abrimos '+(sat&&h>=13?'el lunes':h<7||(sat&&h<8)?'hoy':'mañana')+' a las '+(sat&&h<8?'8:00':'7:00')+' a. m.');
+})();
+
+var nav=document.getElementById('nav');
+function onScroll(){nav.classList.toggle('solid',scrollY>innerHeight*.75)}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+
+document.getElementById('f').addEventListener('submit',function(e){
+  e.preventDefault();
+  var v=function(id){return document.getElementById(id).value};
+  var msg='Hola, soy '+v('n')+' ('+v('t')+'). Quiero pedir cita de '+v('s')+'.'+(v('m')?' '+v('m'):'');
+  window.open('https://wa.me/573105550142?text='+encodeURIComponent(msg),'_blank','noopener');
+});
+</script>
+</body>
+</html>
